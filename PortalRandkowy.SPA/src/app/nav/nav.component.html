@@ -9,9 +9,25 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Wiadomości</a>
-      </li>   
+      </li> 
+      <li class="nav-item">
+        <a class="nav-link" (click)="logout()">Wyloguj</a>
+      </li>    
     </ul>
-    <form #loginForm="ngForm" class="form-inline my-2 my-lg-0" (ngSubmit)="login()">
+
+    <div *ngIf="loggedIn()" class="dropdown">
+      <a class="dropdown-toggle text-light">
+        Witaj Użytkowniku
+      </a>
+    
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="#"><i class="fa fa-user"></i>Edytuj profil</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#"><i class="fa fa-sign-out"></i>Wyloguj</a>
+      </div>
+    </div>
+
+    <form *ngIf="!loggedIn()" #loginForm="ngForm" class="form-inline my-2 my-lg-0" (ngSubmit)="login()">
       <input class="form-control mr-sm-2" type="text" placeholder="Użytkownik" [(ngModel)]="model.username" name="username" required>
       <input class="form-control mr-sm-2" type="password" placeholder="Hasło" [(ngModel)]="model.password" name="password" required> 
       <button [disabled]="!loginForm.valid" class="btn btn-outline-success my-2 my-sm-0" type="submit">Zaloguj</button>
