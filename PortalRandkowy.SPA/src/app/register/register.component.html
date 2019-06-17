@@ -7,6 +7,12 @@
   <div class="form-group">
       <input type="password" class="form-control" placeholder="Hasło" required name="password" [(ngModel)]="model.password">
   </div>
+  <div class="form-group">
+    <label for="favouriteValue">Jak jest twoja ulubiona wartość?</label>
+    <select class="form-control" id="favouriteValue">
+      <option *ngFor="let value of valuesFromHome" [value]="value">{{ value.name }}</option>
+    </select>
+  </div>
   <div class="form-group text-center">
     <button class="btn btn-success" type="submit">Rejestacja</button>
     <button class="btn btn-default" type="button" (click)="cancel()">Anuluj</button>
