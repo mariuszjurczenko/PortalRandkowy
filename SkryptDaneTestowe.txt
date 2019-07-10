@@ -7,7 +7,7 @@
     DateOfBirth: '{{date(new Date(1950,0,1), new Date(1999, 11, 31), "YYYY-MM-dd")}}',
     ZodiacSign: '{{random("Baran","Byk","Bliźnięta","Rak","Lew","Panna","Waga","Skorpion","Strzelec","Koziorożec","Wodnik","Ryby")}}',    
     Created: '{{date(new Date(2019,1,1), new Date(2019, 7, 10), "YYYY-MM-dd")}}',
-    LastActive: function(){return this.DateCreated; },
+    LastActive: function(){return this.Created; },
     City: '{{city()}}',
     Country: '{{country()}}',
     
@@ -43,6 +43,7 @@
           return 'https://randomuser.me/api/portraits/women/' + num.integer(1,99) + '.jpg';		
         },
         isMain: true,
+        DateAdded:'{{date(new Date(2019,1,1), new Date(2019, 7, 10), "YYYY-MM-dd")}}',
         description: '{{lorem()}}'
       }
     ]
