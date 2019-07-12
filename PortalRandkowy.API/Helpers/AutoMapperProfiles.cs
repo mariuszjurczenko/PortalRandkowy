@@ -1,3 +1,4 @@
+using System.Linq;
 using AutoMapper;
 using PortalRandkowy.API.Dtos;
 using PortalRandkowy.API.Models;
@@ -8,8 +9,21 @@ namespace PortalRandkowy.API.Helpers
     {
         public AutoMapperProfiles()
         {
-            CreateMap<User, UserForListDto>();
-            CreateMap<User, UserForDetailedDto>();
+            CreateMap<User, UserForListDto>()
+                .ForMember(dest => dest.PhotoUrl, opt => {
+                    opt.MapFrom(src => src.Photos.FirstOrDefault(p => p.IsMain).Url);
+                })
+                .ForMember(dest => dest.Age, opt => {
+                    opt.ResolveUsing(src => src.DateOfBirth.CalculateAge());
+                });
+            CreateMap<User, UserForDetailedDto>()
+                .ForMember(dest => dest.PhotoUrl, opt => {
+                    opt.MapFrom(src => src.Photos.FirstOrDefault(p => p.IsMain).Url);
+                })
+                .ForMember(dest => dest.Age, opt => {
+                    opt.ResolveUsing(src => src.DateOfBirth.CalculateAge());
+                });
+            CreateMap<Photo, PhotosForDetailedDto>();
         }
     }
 }
