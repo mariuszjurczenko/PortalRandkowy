@@ -6,9 +6,15 @@ import { MessagesComponent } from './messages/messages.component';
 import { AuthGuard } from './_guards/auth.guard';
 
 export const appRoutes: Routes = [
-    { path: 'home', component: HomeComponent},
-    { path: 'uzytkownicy', component: UsereListComponent, canActivate: [AuthGuard]},
-    { path: 'polubienia', component: LikesComponent, canActivate: [AuthGuard]},
-    { path: 'wiadomosci', component: MessagesComponent, canActivate: [AuthGuard]},
-    { path: '**', redirectTo: 'home', pathMatch: 'full'},
+    { path: '', component: HomeComponent},
+    { path: '',
+      runGuardsAndResolvers: 'always',
+      canActivate: [AuthGuard],
+      children: [
+        { path: 'uzytkownicy', component: UsereListComponent},
+        { path: 'polubienia', component: LikesComponent},
+        { path: 'wiadomosci', component: MessagesComponent},
+      ]
+    },
+    { path: '**', redirectTo: '', pathMatch: 'full'},
 ];
