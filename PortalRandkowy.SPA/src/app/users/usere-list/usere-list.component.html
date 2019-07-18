@@ -1,5 +1,25 @@
-<div>
-  <p *ngFor="let user of users">
-    {{user.username}} - {{user.age}} - {{user.city}}
-  </p>
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-lg-12">
+      miejsce na baner reklamowy miejsce na baner reklamowy miejsce na baner reklamowy miejsce na baner reklamowy
+    </div>
+  </div>
+</div>
+
+<div class="container mt-4">
+  <div class="row">
+
+    <div class="col-lg-2 col-md-4 col-sm-6">
+      miejsce na baner reklamowy miejsce na baner reklamowy miejsce na baner reklamowy miejsce na baner reklamowy
+    </div>
+
+    <div class="col-lg-10 col-md-8 col-sm-6">
+      <div class="row">
+        <div *ngFor="let user of users" class="col-lg-2 col-md-4 col-sm-6">
+          <app-user-card [user]='user'></app-user-card>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </div>
