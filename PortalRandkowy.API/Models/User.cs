@@ -34,7 +34,7 @@ namespace PortalRandkowy.API.Models
         // Zakłada  O mnie
         public string Motto { get; set; }           // Motto życiowe
         public string Description { get; set; }     // Opis
-        public string Personality { get; set; }     // Osonowość
+        public string Personality { get; set; }     // Osobowość
         public string LookingFor { get; set; }      // Szukam
 
 
@@ -50,7 +50,7 @@ namespace PortalRandkowy.API.Models
         public string ILike { get; set; }           // Lubię
         public string IdoNotLike { get; set; }      // Nie lubię
         public string MakesMeLaugh { get; set; }    // Rozśmiesza mnie
-        public string ItFeelsBestIn { get; set; }   //Najlepiej czuję się w
+        public string ItFeelsBestIn { get; set; }   // Najlepiej czuję się w
         public string FriendeWouldDescribeMe { get; set; }  // Przyjaciele opisali by mnie
 
 
