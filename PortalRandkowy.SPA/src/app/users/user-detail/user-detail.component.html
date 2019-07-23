@@ -1,3 +1,40 @@
-<p>
-  {{user?.username}}
-</p>
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="card">
+        <img class="card-img-top img-thumbnail" src="{{user?.photoUrl}}" alt="{{user?.username}}">
+        <div class="card-body">
+          <div>
+            <strong>Znak zodiaku:</strong>
+            <p>{{user?.zodiacSign}}</p>
+          </div>
+          <div>
+            <strong>Wiek:</strong>
+            <p>{{user?.age}}</p>
+          </div>
+          <div>
+            <strong>Lokalizacja:</strong>
+            <p>{{user?.city}}, {{user?.country}}</p>
+          </div>
+          <div>
+            <strong>Ostatnia aktywność:</strong>
+            <p>{{user?.lastActive}}</p>
+          </div>
+          <div>
+            <strong>Użytkownik od:</strong>
+            <p>{{user?.created}}</p>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="btn-group d-flex">
+            <button class="btn btn-success w-100">Lubię</button>
+            <button class="btn btn-primary w-100">Wiadomości</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-8">
+      pozostale dane uzytkownika
+    </div>
+  </div>
+</div>
