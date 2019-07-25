@@ -1,0 +1,28 @@
+.img-thumbnail {
+    margin: 15px;
+    width: 90%;
+    height: 90%;
+}
+
+.card-body {
+    padding: 0 15px;
+}
+
+.card-footer {
+    padding: 0 15px;
+    border-top: none;
+    margin-bottom: 10px;
+}
+
+.user-table {
+    width: 100%;
+    margin: 30px;
+}
+
+.user-table-td {
+    width: 50%
+}
+
+textarea {
+    width: 90%
+}
