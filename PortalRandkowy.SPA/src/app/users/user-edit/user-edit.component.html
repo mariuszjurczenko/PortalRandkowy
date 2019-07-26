@@ -4,8 +4,8 @@
         <h1>Twój Profil - Edycja</h1>
     </div>
    <div class="col-sm-8">
-     <div class="alert alert-info">
-       <p><strong>Informacja: </strong> Dokonałeś zmian. Wszelkie nie zapisane zmiany zostaną utracone!</p>
+     <div *ngIf="editForm.dirty" class="alert alert-info">
+       <strong>Informacja: </strong> Dokonałeś zmian. Wszelkie nie zapisane zmiany zostaną utracone!
      </div>
    </div>
   </div>
@@ -36,12 +36,12 @@
           </div>
         </div>
         <div class="card-footer">
-            <button class="btn btn-success btn-block">Zapisz zmiany</button>
+            <button [disabled]="!editForm.dirty" form="editForm" class="btn btn-success btn-block">Zapisz zmiany</button>
         </div>
       </div>
     </div>
     <div class="col-sm-8">
-      <form>
+      <form #editForm="ngForm" id="editForm" (ngSubmit)="updateUser()">
         <div class="tab-panel">
           <tabset class="user-tabset">
             <tab heading="Informacje">
