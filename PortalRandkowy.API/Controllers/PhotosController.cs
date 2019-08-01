@@ -72,9 +72,22 @@ namespace PortalRandkowy.API.Controllers {
             userFromRepo.Photos.Add(photo);
 
             if (await _repository.SaveAll())
-                return Ok();
-
+            {
+                var photoToReturn = _mapper.Map<PhotoForReturnDto>(photo);
+                return CreatedAtRoute("GetPhoto", new { id = photo.Id}, photoToReturn);
+            }
+                
             return BadRequest("Nie można dodać zdjęcia");
+        }
+
+        [HttpGet("{id}", Name = "GetPhoto")]
+        public async Task<IActionResult> GetPhoto(int id)
+        {
+            var photoFromRepo = await _repository.GetPhoto(id);
+
+            var photoForReturn = _mapper.Map<PhotoForReturnDto>(photoFromRepo);
+
+            return Ok(photoForReturn);
         }
     }
 }
