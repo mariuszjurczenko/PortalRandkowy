@@ -3,9 +3,9 @@
     <img src="{{photo.url}}" alt="{{photo.description}}" class="img-thumbnail p-1">
     <div class="text-cener">
       <button type="button" class="btn btn-sm mr-1"
-      (click)="setMainPhoto(photo)"
-      [ngClass]="photo.isMain ? 'btn-success active' : 'btn-info'"
-      [disabled]="photo.isMain">Główne</button>
+            (click)="setMainPhoto(photo)"
+            [ngClass]="photo.isMain ? 'btn-success active' : 'btn-info'"
+            [disabled]="photo.isMain">Główne</button>
       <button type="button" class="btn btn-sm btn-danger"><i class="fa fa-trash-o"></i></button>
     </div>
   </div>

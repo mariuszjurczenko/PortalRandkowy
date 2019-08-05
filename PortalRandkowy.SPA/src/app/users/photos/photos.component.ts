@@ -65,7 +65,6 @@ export class PhotosComponent implements OnInit {
       this.currentMain = this.photos.filter(p => p.isMain === true)[0];
       this.currentMain.isMain = false;
       photo.isMain = true;
-
     }, error => {
       this.alertify.error(error);
     });
