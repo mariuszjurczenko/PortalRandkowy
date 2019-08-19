@@ -1,14 +1,20 @@
-<form #registerForm="ngForm" (ngSubmit)="register()">
+<form [formGroup]="registerForm" (ngSubmit)="register()">
   <h2 class="text-center text-primary">Zapisz się</h2>
   <hr>
   <div class="form-group">
-    <input type="text" class="form-control" placeholder="Nazwa użytkownika" required name="username" [(ngModel)]="model.username">
+    <input type="text" class="form-control" placeholder="Nazwa użytkownika" formControlName="username">
   </div>
   <div class="form-group">
-      <input type="password" class="form-control" placeholder="Hasło" required name="password" [(ngModel)]="model.password">
+      <input type="password" class="form-control" placeholder="Hasło" formControlName="password">
+  </div>
+  <div class="form-group">
+    <input type="password" class="form-control" placeholder="Potwierdz hasło" formControlName="confirmPassword">
   </div>
   <div class="form-group text-center">
     <button class="btn btn-success" type="submit">Rejestacja</button>
     <button class="btn btn-default" type="button" (click)="cancel()">Anuluj</button>
   </div>
 </form>
+
+<p>Wartosci z formularza: {{registerForm.value | json}}</p>
+<p>Statusy z formularza: {{registerForm.status | json}}</p>
