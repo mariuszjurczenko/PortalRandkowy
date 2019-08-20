@@ -36,14 +36,13 @@ namespace PortalRandkowy.API.Controllers
             if (await _repository.UserExists(userForRegisterDto.Username))
                 return BadRequest("Użytkownik o takiej nazwie już istnieje !");
 
-            var userToCreate = new User
-            {
-                Username = userForRegisterDto.Username
-            };
+            var userToCreate = _mapper.Map<User>(userForRegisterDto);
 
             var cretedUser = await _repository.Register(userToCreate, userForRegisterDto.Password);
 
-            return StatusCode(201);
+            var userToReturn = _mapper.Map<UserForDetailedDto>(cretedUser);
+
+            return CreatedAtRoute("GetUser", new { controller = "Users", Id = cretedUser.Id}, userToReturn);
         }
 
         [HttpPost("login")]
