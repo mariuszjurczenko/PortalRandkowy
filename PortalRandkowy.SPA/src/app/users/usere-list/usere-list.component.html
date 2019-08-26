@@ -32,7 +32,13 @@
           <app-user-card [user]='user'></app-user-card>
         </div>
       </div>
+      <pagination [boundaryLinks]="true" 
+                  [totalItems]="pagination.totalItems"
+                  [itemsPerPage]="pagination.itemsPerPage"
+                  [(ngModel)]="pagination.currentPage"
+                  (pageChanged)="pageChanged($event)"
+                  previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
+    </pagination>
     </div>
-
   </div>
 </div>

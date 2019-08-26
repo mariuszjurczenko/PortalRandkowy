@@ -10,7 +10,7 @@ import { catchError } from 'rxjs/operators';
 export class UserListResolver implements Resolve<User[]> {
 
     pageNumber = 1;
-    pageSize = 36;
+    pageSize = 12;
 
     constructor(private userService: UserService,
                 private router: Router,
