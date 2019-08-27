@@ -27,6 +27,45 @@
     </div>
 
     <div class="col-lg-10 col-md-8 col-sm-6">
+
+      <div class="text-center mt-3">
+        <h2>Propozycje dla Ciebie - znalezionych pozycji : {{pagination.totalItems}} </h2>
+      </div>
+    
+      <form class="form-inline" #form="ngForm" (ngSubmit)="loadUsers()" novalidate>
+        <div class="form-group">
+          <label for="minAge">Wiek od</label>
+          <input type="number" class="form-control ml-1" style="width: 70px" id="minAge" 
+                  [(ngModel)]="userParams.minAge" name="minAge">
+        </div>         
+        <div class="form-group px-2">
+          <label for="maxAge">Wiek do</label>
+          <input type="number" class="form-control ml-1" style="width: 75px" id="maxAge" 
+                  [(ngModel)]="userParams.maxAge" name="maxAge">
+        </div>        
+        <div class="form-group px-2">
+          <label for="gender">Płeć: </label>
+          <select class="form-control ml-1" style="width: 130px" id="gender" 
+                  [(ngModel)]="userParams.gender" name="gender">
+            <option *ngFor="let gender of genderList" [value]="gender.value">
+              {{ gender.display }}
+            </option>        
+          </select>
+        </div>    
+        <div class="form-group px-2">
+          <label for="gender">Znak: </label>
+          <select class="form-control ml-1" style="width: 130px" id="zodiacSign" 
+                  [(ngModel)]="userParams.zodiacSign" name="zodiacSign">
+            <option *ngFor="let zodiacSign of zodiacSignList" [value]="zodiacSign.value">  
+              {{ zodiacSign.display }}    
+            </option> 
+          </select>
+        </div> 
+        <button type="submit" class="btn btn-primary" style="margin-left:10px">Zastosuj filtr</button>
+        <button  type="button" class="btn btn-info" style="margin-left:10px" (click)="resetFilters()">Zresetuj filtr</button>
+      </form>
+      <br> 
+
       <div class="row">
         <div *ngFor="let user of users" class="col-lg-2 col-md-4 col-sm-6">
           <app-user-card [user]='user'></app-user-card>
