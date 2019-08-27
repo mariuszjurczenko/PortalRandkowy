@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -23,7 +24,20 @@ namespace PortalRandkowy.API.Data
 
         public async Task<PagedList<User>> GetUsers(UserParams userParams)
         {
-            var users = _context.Users.Include(p => p.Photos);
+            var users = _context.Users.Include(p => p.Photos).AsQueryable();
+
+            users = users.Where(u => u.Id != userParams.UserId);
+            users = users.Where(u => u.Gender == userParams.Gender);
+
+            if (userParams.MinAge != 18 || userParams.MaxAge != 100)
+            {
+                var minDate = DateTime.Today.AddYears(-userParams.MaxAge -1);
+                var maxDate = DateTime.Today.AddYears(-userParams.MinAge);
+                users = users.Where(u => u.DateOfBirth >= minDate && u.DateOfBirth <= maxDate);
+            }
+
+            if (userParams.ZodiacSign != null)
+                users = users.Where(u => u.ZodiacSign == userParams.ZodiacSign);
 
             return await PagedList<User>.CreateListAsync(users, userParams.PageNumber, userParams.PageSize);
         }
