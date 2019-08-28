@@ -65,19 +65,30 @@
         <button  type="button" class="btn btn-info" style="margin-left:10px" (click)="resetFilters()">Zresetuj filtr</button>
       </form>
       <br> 
-
       <div class="row">
         <div *ngFor="let user of users" class="col-lg-2 col-md-4 col-sm-6">
           <app-user-card [user]='user'></app-user-card>
         </div>
       </div>
-      <pagination [boundaryLinks]="true" 
-                  [totalItems]="pagination.totalItems"
-                  [itemsPerPage]="pagination.itemsPerPage"
-                  [(ngModel)]="pagination.currentPage"
-                  (pageChanged)="pageChanged($event)"
-                  previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
-    </pagination>
+      <div class="row">
+        <pagination [boundaryLinks]="true" 
+                    [totalItems]="pagination.totalItems"
+                    [itemsPerPage]="pagination.itemsPerPage"
+                    [(ngModel)]="pagination.currentPage"
+                    (pageChanged)="pageChanged($event)"
+                    previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
+        </pagination>
+        <div class="col">
+          <div class="btn-group float-right">
+            <button btnRadio="lastActive" [(ngModel)]="userParams.orderBy" (click)="loadUsers()"
+                    type="button" name="orderBy" class="btn btn-primary">Ostatnio aktywni</button>
+
+            <button btnRadio="created" [(ngModel)]="userParams.orderBy" (click)="loadUsers()"
+                    type="button" name="orderBy" class="btn btn-primary">Najnowsi członkowie</button>
+          </div>
+        </div>
+      </div>
+             
     </div>
   </div>
 </div>
