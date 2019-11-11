@@ -1,3 +1,55 @@
-<p *ngFor="let message of messages">
-  {{message.content}}
-</p>
+<div class="card">
+  <div class="card-body">
+    <div *ngIf="messages?.length === 0">
+      Brak wiadomości ...
+    </div>
+    <ul class="chat"> 
+      <li *ngFor="let message of messages">
+        <!-- do mnie -->
+        <div *ngIf="message.senderId == recipientId">
+          <span class="chat-img float-left">
+            <img src="{{message.senderPhotoUrl}}" alt="{{message.senderUsername}}" class="rounded-circle">
+          </span>
+          <div class="chat-body">
+            <div class="header">
+              <strong class="primary-font">{{message.senderUsername}}</strong>
+              <small class="text-muted float-right">
+                  <span class="fa fa-clock-o">{{message.dateSent | timeAgo}}</span>
+              </small>            
+            </div>
+            <p>{{ message.content }}</p>
+          </div>
+        </div>
+
+         <!-- do nich -->
+         <div *ngIf="message.senderId != recipientId">
+            <span class="chat-img float-right">
+              <img src="{{message.senderPhotoUrl}}" alt="{{message.senderUsername}}" class="rounded-circle">
+            </span>
+            <div class="chat-body">
+              <div class="header">
+                  <small class="text-muted">
+                      <span class="fa fa-clock-o">{{message.dateSent | timeAgo}}</span>
+                      <span *ngIf="!message.isRead" class="text-danger">(nie przeczytana)</span>
+                      <span *ngIf="message.isRead" class="text-success">(przeczytana {{message.dateRead | timeAgo}}</span>
+                  </small>  
+                <strong class="primary-font float-right">{{message.senderUsername}}</strong>
+                          
+              </div>
+              <p>{{ message.content }}</p>
+            </div>
+          </div>        
+      </li>
+    </ul>
+  </div>
+  <div class="card-footer">
+    <form action="">
+      <div class="input-group">
+          <input type="text" class="form-control input-sm" placeholder="wyślij prywatną wiadomość">
+          <div class="input-group-append">
+            <button class="btn btn-primary">Wyślij</button>
+          </div>
+      </div>    
+    </form>
+  </div>
+</div>
