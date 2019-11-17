@@ -70,7 +70,8 @@ namespace PortalRandkowy.API.Controllers {
         [HttpPost]
         public async Task<IActionResult> CreateMessage(int userId, MessageForCreationDto messageForCreationDto)
         {
-            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            var sender = await _repository.GetUser(userId);
+            if (sender.Id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
                 return Unauthorized();
 
             messageForCreationDto.SenderId = userId;
@@ -82,12 +83,13 @@ namespace PortalRandkowy.API.Controllers {
 
             var message = _mapper.Map<Message>(messageForCreationDto);
 
-            _repository.Add(message);
-
-            var messageToReturn = _mapper.Map<MessageForCreationDto>(message);
+            _repository.Add(message);           
 
             if (await _repository.SaveAll())
+            {
+                var messageToReturn = _mapper.Map<MessageToReturnDto>(message);
                 return CreatedAtRoute("GetMessage", new { id = message.Id}, messageToReturn);
+            }               
 
             throw new Exception("Utworzenie wiadomości nie powiodło się przy zapisie");
         }
