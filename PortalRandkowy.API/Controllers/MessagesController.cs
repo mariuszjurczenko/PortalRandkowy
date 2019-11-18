@@ -93,5 +93,28 @@ namespace PortalRandkowy.API.Controllers {
 
             throw new Exception("Utworzenie wiadomości nie powiodło się przy zapisie");
         }
+
+        [HttpPost("{id}")]
+        public async Task<IActionResult> DeleteMessage(int id, int userId)
+        {
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                return Unauthorized();
+
+            var messageFromRepo = await _repository.GetMessage(id);
+
+            if (messageFromRepo.SenderId == userId)
+                messageFromRepo.SenderDeleted = true;
+            
+            if (messageFromRepo.RecipientId == userId)
+                messageFromRepo.RecipientDeleted = true;
+
+            if (messageFromRepo.SenderDeleted && messageFromRepo.RecipientDeleted)
+                _repository.Delete(messageFromRepo);
+
+            if (await _repository.SaveAll())
+                return NoContent();
+
+            throw new Exception("Błąd podczas usuwania wiadomości");
+        }
     }
 }
