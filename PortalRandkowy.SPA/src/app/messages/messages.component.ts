@@ -40,6 +40,17 @@ export class MessagesComponent implements OnInit {
         });
   }
 
+  deleteMessage(id: number) {
+    this.alertify.confirm('Czy na pewno chcesz usunąć tę wiadomość?', () => {
+      this.userService.deleteMessage(id, this.authService.decodedToken.nameid).subscribe(() => {
+        this.messages.splice(this.messages.findIndex(m => m.id === id), 1);
+        this.alertify.success('Wiadomość została usunięta');
+      }, error => {
+        this.alertify.error('Nie udało się usunąć wiadomości');
+      });
+    });
+  }
+
   pageChanged(event: any): void {
     this.pagination.currentPage = event.page;
     this.loadMessages();
