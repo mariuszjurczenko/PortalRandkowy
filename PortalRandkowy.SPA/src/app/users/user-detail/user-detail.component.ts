@@ -5,6 +5,7 @@ import { AlertifyService } from 'src/app/_services/alertify.service';
 import { ActivatedRoute } from '@angular/router';
 import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gallery';
 import { TabsetComponent } from 'ngx-bootstrap';
+import { AuthService } from 'src/app/_services/auth.service';
 
 @Component({
   selector: 'app-user-detail',
@@ -20,7 +21,8 @@ export class UserDetailComponent implements OnInit {
 
   constructor(private userService: UserService,
               private alertify: AlertifyService,
-              private route: ActivatedRoute) {}
+              private route: ActivatedRoute,
+              private authService: AuthService) {}
 
   ngOnInit() {
     this.route.data.subscribe(data => {
@@ -63,5 +65,14 @@ export class UserDetailComponent implements OnInit {
 
   selectTab(tabId: number) {
     this.userTabs.tabs[tabId].active = true;
+  }
+
+  sendLike(id: number) {
+    this.userService.sendLike(this.authService.decodedToken.nameid, id)
+          .subscribe(data => {
+            this.alertify.success('Polubiłeś: ' + this.user.username);
+          }, error => {
+            this.alertify.error(error);
+          });
   }
 }
