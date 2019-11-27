@@ -18,7 +18,7 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   bsConfig: Partial<BsDatepickerConfig>;
 
-  zodiacSignList = [{value: 'Wszystkie', display: 'Wszystkie'},
+  zodiacSignList = [
   {value: 'Baran', display: 'Baran'},
   {value: 'Byk', display: 'Byk'},
   {value: 'Bliźnięta', display: 'Bliźnięta'},
