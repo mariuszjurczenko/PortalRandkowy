@@ -18,6 +18,21 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   bsConfig: Partial<BsDatepickerConfig>;
 
+  zodiacSignList = [{value: 'Wszystkie', display: 'Wszystkie'},
+  {value: 'Baran', display: 'Baran'},
+  {value: 'Byk', display: 'Byk'},
+  {value: 'Bliźnięta', display: 'Bliźnięta'},
+  {value: 'Rak', display: 'Rak'},
+  {value: 'Lew', display: 'Lew'},
+  {value: 'Panna', display: 'Panna'},
+  {value: 'Waga', display: 'Waga'},
+  {value: 'Scorpion', display: 'Skorpion'},
+  {value: 'Strzelec', display: 'Strzelec'},
+  {value: 'Koziorożec', display: 'Koziorożec'},
+  {value: 'Wodnik', display: 'Wodnik'},
+  {value: 'Ryby', display: 'Ryby'}];
+  userParams: any = {};
+
   constructor(private authService: AuthService, private alertify: AlertifyService, private fb: FormBuilder, private router: Router) { }
 
   ngOnInit() {
@@ -32,7 +47,7 @@ export class RegisterComponent implements OnInit {
       username: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(10)]],
       confirmPassword: ['', Validators.required],
-      gender: ['female'],
+      gender: ['kobieta'],
       dateOfBirth: [null, Validators.required],
       zodiacSign: ['', Validators.required],
       city: ['', Validators.required],

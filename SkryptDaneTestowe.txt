@@ -1,7 +1,7 @@
 [
   '{{repeat(25)}}',
   {
-    Username: '{{firstName("female")}}',		
+    Username: '{{firstName("kobieta")}}',		
     Password: 'password',
     Gender: 'kobieta',			
     DateOfBirth: '{{date(new Date(1950,0,1), new Date(1999, 11, 31), "YYYY-MM-dd")}}',
