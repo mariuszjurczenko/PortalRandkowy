@@ -9,14 +9,15 @@ using PortalRandkowy.API.Data;
 namespace PortalRandkowy.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20190905085012_AddedMessageEntity")]
-    partial class AddedMessageEntity
+    [Migration("20191208101230_mysqlinitial")]
+    partial class mysqlinitial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.4-servicing-10062");
+                .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
+                .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("PortalRandkowy.API.Models.Like", b =>
                 {
