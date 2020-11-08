@@ -1,4 +1,6 @@
 # Seria Web Developer - część 3 - Portal Randkowy. 
+mariuszjurczenko@dev-hobby.pl
+
 Budowanie aplikacji ASP.NET Core 2.2 Web API z wykorzystaniem Angular 8. 
 
 W tym kursie będziemy budować jeden duży praktyczny projekt "Portal Randkowy". 
