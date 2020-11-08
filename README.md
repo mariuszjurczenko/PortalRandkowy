@@ -5,5 +5,5 @@ W tym kursie będziemy budować jeden duży praktyczny projekt "Portal Randkowy"
 Będziemy go budować od początku do końca łącznie z opublikowaniem w sieci, gdzie będzie można go przetestować!!! 
 Może nawet znaleźć swoją drugą połówkę! :) !!! 
 
-Link do kursu na Udemy
-https://www.udemy.com/course/seria-web-developer-czesc-3-portal-randkowy/?couponCode=DUKLOGHWEBPR
+Link do kursu
+https://dev-hobby.pl/kursy/portal-randkowy-seria-web-developer-czesc-3/
