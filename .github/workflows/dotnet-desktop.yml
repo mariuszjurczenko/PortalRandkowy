@@ -1,0 +1,34 @@
+name: CI - Build
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+env:
+  Api_Project_Path: PortalRandkowy.API/PortalRandkowy.API.csproj
+  Configuration: Release
+
+jobs:
+  build-api:
+    runs-on: windows-latest   # netcoreapp2.2 na Linux runnerach (OpenSSL 3.x) nie wystartuje bez ręcznej instalacji libssl1.1
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Install .NET Core 2.2 SDK
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '2.2.x'
+
+    - name: Restore dependencies
+      run: dotnet restore ${{ env.Api_Project_Path }}
+
+    - name: Build
+      run: dotnet build ${{ env.Api_Project_Path }} --configuration ${{ env.Configuration }} --no-restore
+
+    # Brak projektu testowego w repo — ten krok czeka na dodanie *.UnitTests
+    # - name: Run unit tests
+    #   run: dotnet test ...
